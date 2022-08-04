@@ -13,7 +13,7 @@ public class AccountTest {
     private final String name;
     private final boolean expected;
 
-    public AccountTest (String name, boolean expected) {
+    public AccountTest(String name, boolean expected) {
         this.name = name;
         this.expected = expected; // создали конструктор тестового класса
     }
@@ -32,16 +32,20 @@ public class AccountTest {
                 {"", false},
                 {"        ", false},
                 {"Тимоти Шаламешаламем", false},
+                {"Тимоти  Шаламе", false},
                 {"ТимотимШаламешалам", false},
                 {"Тимми Тимми Тимми", false},
-                {"Тимоти Шаламешаламмамам", false},// передали тестовые данные
+                {"Тимоти Шаламешаламмамам", false},
+                {" ТимотиШаламе", false},
+                {"ТимотиШаламе ", false},
+                {" ", false}, // передали тестовые данные
         };
     }
 
     @Test
     @DisplayName("shouldCorrectAccount") // имя теста
     @Description("Account - check correct new Account, parameterized") // описание теста
-    public void shouldCorrectAccount()  {
+    public void shouldCorrectAccount() {
         Account account = new Account(name);
         boolean actual = account.checkNameToEmboss();
         assertEquals(expected, actual);

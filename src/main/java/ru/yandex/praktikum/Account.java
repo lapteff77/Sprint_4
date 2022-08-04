@@ -4,25 +4,28 @@ public class Account {
 
     private final String name;
     int spaces = 0;
+    String foo = null;
 
     public Account(String name) {
         this.name = name;
     }
 
     public boolean checkNameToEmboss() {
-        if (this.name.isEmpty()) { // проверяет, не пустая ли строка
+        if (name.equals(foo)) { // проверяет, не передано ли значение null
             return false;
-        } else if (this.name.isBlank()) { // проверяет, не состоит ли строка из пробелов
+        } else if (name.isEmpty()) { // проверяет, не пустая ли строка
             return false;
-        } else if (this.name.indexOf(" ") == 0) { // проверяет, не начинается ли строка из пробела
+        } else if (name.isBlank()) { // проверяет, не состоит ли строка из пробелов
             return false;
-        } else if (this.name.lastIndexOf(" ") == this.name.length()) { // проверяет, не заканчивается ли строка пробелом
+        } else if (name.startsWith(" ")) { // проверяет, не начинается ли строка из пробела
             return false;
-        } else if (this.name.length() > 19) { // проверка длины строки (не более 19 символов)
+        } else if (name.endsWith(" ")) { // проверяет, не заканчивается ли строка пробелом
             return false;
-        } else if (this.name.length() < 3) { // проверка длины строки (не менее 3 символов)
+        } else if (name.length() > 19) { // проверка длины строки (не более 19 символов)
             return false;
-        } else if (this.name.contains(" ")) {
+        } else if (name.length() < 3) { // проверка длины строки (не менее 3 символов)
+            return false;
+        } else if (name.contains(" ")) {
             {
                 for (int i = 0; i < name.length(); i++) {
                     spaces += (Character.isWhitespace(name.charAt(i))) ? 1 : 0;
